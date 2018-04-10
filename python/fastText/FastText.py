@@ -212,6 +212,10 @@ class _FastText():
         """Save the model to the given path"""
         self.f.saveModel(path)
 
+    def save_softmax(self, path):
+        """Save softmax weights to the given path"""
+        self.f.saveSoftmax(path)
+
     def test(self, path, k=1):
         """Evaluate supervised model using file given by path"""
         return self.f.test(path, k)
@@ -288,6 +292,7 @@ def _build_args(args):
     a.output = ""  # User should use save_model
     a.pretrainedVectors = ""  # Unsupported
     a.saveOutput = 0  # Never use this
+    a.saveSoftmax = 0
     if a.wordNgrams <= 1 and a.maxn == 0:
         a.bucket = 0
     return a

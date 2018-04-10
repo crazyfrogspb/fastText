@@ -71,6 +71,7 @@ PYBIND11_MODULE(fasttext_pybind, m) {
       .def_readwrite("verbose", &fasttext::Args::verbose)
       .def_readwrite("pretrainedVectors", &fasttext::Args::pretrainedVectors)
       .def_readwrite("saveOutput", &fasttext::Args::saveOutput)
+      .def_readwrite("saveSoftmax", &fasttext::Args::saveSoftmax)
 
       .def_readwrite("qout", &fasttext::Args::qout)
       .def_readwrite("retrain", &fasttext::Args::retrain)
@@ -143,6 +144,9 @@ PYBIND11_MODULE(fasttext_pybind, m) {
       .def(
           "saveModel",
           [](fasttext::FastText& m, std::string s) { m.saveModel(s); })
+      .def(
+          "saveSoftmax",
+          [](fasttext::FastText& m, std::string s) { m.saveSoftmax(s); })
       .def(
           "test",
           [](fasttext::FastText& m, const std::string filename, int32_t k) {

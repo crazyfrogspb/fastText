@@ -303,6 +303,9 @@ void train(const std::vector<std::string> args) {
   if (a.saveOutput) {
     fasttext.saveOutput();
   }
+  if (a.saveSoftmax) {
+    fasttext.saveSoftmax();
+  }
 }
 
 void dump(const std::vector<std::string>& args) {

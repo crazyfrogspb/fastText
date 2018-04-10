@@ -37,6 +37,7 @@ Args::Args() {
   verbose = 2;
   pretrainedVectors = "";
   saveOutput = false;
+  saveSoftmax = false;
 
   qout = false;
   retrain = false;
@@ -153,6 +154,9 @@ void Args::parseArgs(const std::vector<std::string>& args) {
       } else if (args[ai] == "-saveOutput") {
         saveOutput = true;
         ai--;
+      } else if (args[ai] == "-saveSoftmax") {
+        saveSoftmax = true;
+        ai--;
       } else if (args[ai] == "-qnorm") {
         qnorm = true;
         ai--;
@@ -229,8 +233,10 @@ void Args::printTrainingHelp() {
     << "  -loss               loss function {ns, hs, softmax} [" << lossToString(loss) << "]\n"
     << "  -thread             number of threads [" << thread << "]\n"
     << "  -pretrainedVectors  pretrained word vectors for supervised learning ["<< pretrainedVectors <<"]\n"
-    << "  -saveOutput         whether output params should be saved [" << boolToString(saveOutput) << "]\n";
+    << "  -saveOutput         whether output params should be saved [" << boolToString(saveOutput) << "]\n"
+    << "  -saveSoftmax         whether softmax weights should be saved [" << boolToString(saveSoftmax) << "]\n";
 }
+
 
 void Args::printQuantizationHelp() {
   std::cerr

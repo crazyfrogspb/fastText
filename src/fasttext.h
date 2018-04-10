@@ -78,6 +78,8 @@ class FastText {
   void saveVectors();
   void saveModel(const std::string);
   void saveOutput();
+  void saveSoftmax();
+  void saveSoftmax(const std::string);
   void saveModel();
   void loadModel(std::istream&);
   void loadModel(const std::string&);

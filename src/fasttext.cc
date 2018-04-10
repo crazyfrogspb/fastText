@@ -123,6 +123,40 @@ void FastText::saveOutput() {
   ofs.close();
 }
 
+void FastText::saveSoftmax() {
+  std::ofstream ofs(args_->output + ".softmax");
+  if (!ofs.is_open()) {
+    std::cerr << "Error opening file for saving softmax weights." << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  ofs << dict_->nlabels() << " " << args_->dim << std::endl;
+  Vector vec(args_->dim);
+  for (int32_t i = 0; i < dict_->nlabels(); i++) {
+    std::string label = dict_->getLabel(i);
+    vec.zero();
+    vec.addRow(*output_, i);
+    ofs << label << " " << vec << std::endl;
+  }
+  ofs.close();
+}
+
+void FastText::saveSoftmax(const std::string path) {
+  std::ofstream ofs(path, std::ofstream::binary);
+  if (!ofs.is_open()) {
+    std::cerr << "Error opening file for saving softmax weights." << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  ofs << dict_->nlabels() << " " << args_->dim << std::endl;
+  Vector vec(args_->dim);
+  for (int32_t i = 0; i < dict_->nlabels(); i++) {
+    std::string label = dict_->getLabel(i);
+    vec.zero();
+    vec.addRow(*output_, i);
+    ofs << label << " " << vec << std::endl;
+  }
+  ofs.close();
+}
+
 bool FastText::checkModel(std::istream& in) {
   int32_t magic;
   in.read((char*)&(magic), sizeof(int32_t));
