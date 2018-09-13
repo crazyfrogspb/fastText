@@ -290,7 +290,6 @@ def _build_args(args):
     for (k, v) in args.items():
         setattr(a, k, v)
     a.output = ""  # User should use save_model
-    a.pretrainedVectors = ""  # Unsupported
     a.saveOutput = 0  # Never use this
     a.saveSoftmax = 0
     if a.wordNgrams <= 1 and a.maxn == 0:
